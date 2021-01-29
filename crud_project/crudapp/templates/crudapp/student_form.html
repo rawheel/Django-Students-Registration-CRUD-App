@@ -1,0 +1,33 @@
+{% extends "crudapp/base.html" %}
+{% load crispy_forms_tags %}
+{% block content %}
+
+<form action="" method="post" autocomplete="off">
+    {%csrf_token%}
+    {{ form.std_rn | as_crispy_field }}
+    {{ form.std_name | as_crispy_field }}
+    <div class="row">
+        <div class="col-md-4">
+            {{ form.std_contact | as_crispy_field }}
+        </div>
+        <div class="col-md-8">
+            {{ form.std_email | as_crispy_field }}
+        </div>
+    </div>
+    <br>
+    <div class="row">
+        <div class="col-md-8">
+            <button style="margin-bottom:10px;" type="submit" class="btn btn-success btn-block btn-lg">
+                <i class="fas fa-database"></i> Submit
+            </button>
+        </div>
+        <div class="col-md-4">
+            <a href="{% url 'student_list' %}" class="btn btn-secondary btn-block btn-lg">
+                <i class="fas fa-stream">Back to List</i>
+            </a>
+        </div>
+    </div>
+
+
+</form>
+{% endblock content %}

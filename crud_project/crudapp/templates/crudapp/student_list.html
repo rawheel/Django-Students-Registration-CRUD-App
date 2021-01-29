@@ -1,0 +1,45 @@
+{% extends "crudapp/base.html" %}
+
+
+{% block content %}
+<table class="table table-striped">
+    <thead>
+    <tr>
+      <th scope="col">Roll Number</th>
+      <th scope="col">Full Name</th>
+      <th scope="col">Contact</th>
+      <th scope="col">Email</th>
+        <th>
+            <a href="{% url 'student_insert' %}" class="btn btn-outline-success"  >
+                <i class="fas fa-plus">Add New</i>
+            </a>
+        </th>
+
+    </tr>
+
+    </thead>
+    <tbody>
+        {% for student in students_list %}
+        <tr>
+            <td>{{student.std_rn}}</td>
+            <td>{{student.std_name}}</td>
+            <td>{{student.std_contact}}</td>
+            <td>{{student.std_email}}</td>
+            <td>
+                <a href="{% url 'student_update' student.id %}" class="btn text-secondary px-0">
+                    <li class="far fa-edit fa-lg"></li>
+                </a>
+
+                <form action="{% url 'student_delete' student.id %}" method="post" class = "d-inline">
+                    {%csrf_token%}
+                    <button type="submit" class="btn">
+                        <i class="far fa-trash-alt fa-lg text-danger float-right"></i>
+                    </button>
+                </form>
+            </td>
+        </tr>
+        {% endfor %}
+
+    </tbody>
+</table>
+{% endblock content %}
